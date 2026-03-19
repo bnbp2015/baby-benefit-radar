@@ -649,6 +649,26 @@
         <div class="signup-row">
           <input type="email" id="email" placeholder="이메일 주소" />
         </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+          <select id="region" style="padding:0.85rem 1rem; border:1px solid var(--border); border-radius:8px; font-family:'Noto Sans KR',sans-serif; font-size:0.87rem; background:var(--cream); color:var(--ink); outline:none;">
+            <option value="">거주 지역</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+            <option>부산</option>
+            <option>대구</option>
+            <option>광주</option>
+            <option>대전</option>
+            <option>그 외</option>
+          </select>
+          <input type="text" id="baby-age" placeholder="아이 나이 (예: 18개월)" style="padding:0.85rem 1rem; border:1px solid var(--border); border-radius:8px; font-family:'Noto Sans KR',sans-serif; font-size:0.87rem; background:var(--cream); color:var(--ink); outline:none;" />
+          <select id="working" style="grid-column:1/-1; padding:0.85rem 1rem; border:1px solid var(--border); border-radius:8px; font-family:'Noto Sans KR',sans-serif; font-size:0.87rem; background:var(--cream); color:var(--ink); outline:none;">
+            <option value="">맞벌이 여부</option>
+            <option>맞벌이</option>
+            <option>외벌이</option>
+            <option>육아휴직 중</option>
+          </select>
+        </div>
         <button class="btn-primary" onclick="handleSignup()">
           무료로 사전 등록하기 →
         </button>
@@ -790,7 +810,7 @@
     <h3>지금 사전 등록하고 출시 알림 받기</h3>
     <div class="cta-inputs">
       <input type="email" id="email2" placeholder="이메일 주소" />
-      <select id="region">
+      <select id="region2">
         <option value="">거주 지역 선택</option>
         <option>서울</option>
         <option>경기</option>
@@ -801,8 +821,8 @@
         <option>대전</option>
         <option>그 외</option>
       </select>
-      <input type="text" id="baby-age" placeholder="아이 나이 (예: 18개월)" />
-      <select id="working">
+      <input type="text" id="baby-age2" placeholder="아이 나이 (예: 18개월)" />
+      <select id="working2">
         <option value="">맞벌이 여부</option>
         <option>맞벌이</option>
         <option>외벌이</option>
@@ -852,7 +872,10 @@
       alert('이메일 주소를 올바르게 입력해주세요.');
       return;
     }
-    submitToGoogle(email, '', '', '');
+    const region = document.getElementById('region').value;
+    const age = document.getElementById('baby-age').value;
+    const working = document.getElementById('working').value;
+    submitToGoogle(email, region, age, working);
     document.querySelector('.signup-row').style.display = 'none';
     document.querySelector('.btn-primary').style.display = 'none';
     document.getElementById('success').style.display = 'block';
@@ -866,9 +889,9 @@
       alert('이메일 주소를 올바르게 입력해주세요.');
       return;
     }
-    const region = document.getElementById('region').value;
-    const age = document.getElementById('baby-age').value;
-    const working = document.getElementById('working').value;
+    const region = document.getElementById('region2').value;
+    const age = document.getElementById('baby-age2').value;
+    const working = document.getElementById('working2').value;
     submitToGoogle(email, region, age, working);
     document.getElementById('success2').style.display = 'block';
     document.querySelector('.cta-full').style.display = 'none';
